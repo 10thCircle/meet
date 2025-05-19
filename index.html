@@ -14,14 +14,21 @@
       <div class="content">
         <header class="header">
           <nav class="navbar">
-            <p id="user.nameDisplay"></p>
-            <form class="nav-item" id="userForm">
-                <select>
-                    <option href="#loginForm">Log-in</option>
-                    <option id="logOut" onclick="logOut()">Log-Out</option>
-                    <p id="user.nameDisplay"></p>
-                </select>
-                </form>
+            <ul class="nav-menu">
+                <form class="nav-item" id="userForm">
+                    <ul class="nav-menu">
+                    <select>
+                        <option href="#loginForm">Log-in</option>
+                        <option id="logOut" onclick="logOut()">Log-Out</option>
+                        <p id="user.nameDisplay"></p>
+                    </select>
+                    </form>
+                <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                </div>
+            </ul>
             </nav>
         </header>
     </div>
