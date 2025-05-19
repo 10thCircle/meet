@@ -9,7 +9,51 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
-<body>
-    
+<body onload="fetchUsers() && checkLogin()">
+    <div class="container">
+      <div class="content">
+        <header class="header">
+          <nav class="navbar">
+            <p id="user.nameDisplay"></p>
+            <form class="nav-item" id="userForm">
+                <select>
+                    <option href="#loginForm">Log-in</option>
+                    <option id="logOut" onclick="logOut()">Log-Out</option>
+                    <p id="user.nameDisplay"></p>
+                </select>
+                </form>
+            </nav>
+        </header>
+    </div>
+    <div class="forms-container">
+          <section id="userForm">
+            <h1>User Information</h1>
+            <ul id="user-list"></ul>
+            <h2>Add User</h2>
+            <form onsubmit="event.preventDefault(); checkLogin();" id="add-user-form">
+              <input type="text" id="name" placeholder="Name" required />
+              <input type="email" id="email" placeholder="Email" required />
+              <select id="role" required>
+                <option value="" disabled selected>Select Role</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="parent">Parent</option>
+                <option value="school">School</option>
+              </select>
+              <input type="password" id="password" placeholder="Password" required />
+              <button type="submit">Add User</button>
+            </form>   
+          </section>
+          <section id="loginForm">
+            <h2 id="tag">Login</h2>
+            <form onsubmit="event.preventDefault(); loginUser();" id="login-form">
+              <input type="email" id="login-email" placeholder="Email" required />
+              <input type="password" id="login-password" placeholder="Password" required />
+              <button type="submit">Login</button>
+            </form>
+            
+          </section>
+        </div>
+    </div>
 </body>
 </html>

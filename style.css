@@ -1,0 +1,132 @@
+.header-image {
+    max-height: 500px;
+    min-height: min-content;
+    width: 100%;
+}
+.bg-dark {
+    background-color: rgb(238, 238, 238);
+}
+.logo {
+    font-family: "Merriweather", serif;
+    font-weight: bold;
+    color: orange
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu.active {
+    display: block;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.nav-item {
+    margin: 0 10px;
+    text-align: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #00bcd4;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 3px 0;
+    transition: all 0.3s;
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        left: -100%;
+        top: 5rem;
+        background-color: #333;
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+}
+
+/* New styles for forms container */
+.forms-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+#userForm {
+  flex: 1;
+  text-align: left;
+}
+
+#loginForm {
+  flex: 1;
+  text-align: right;
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 800px) {
+  .forms-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #userForm, #loginForm {
+    text-align: left;
+  }
+}
