@@ -155,6 +155,20 @@
                             <button id="join-meeting">Join Meeting</button>
                             <br><h1>Or...</h1><br>
                             <button id="create-meeting">Create Meeting</button>
+                            <select id="meeting-type">
+                                <option value="now">Now</option>
+                                <option value="later">Later</option>
+                            </select>
+
+                            <script>
+                                document.getElementById('create-meeting').addEventListener('click', () => {
+                                    if (document.getElementById('meeting-type').value === 'now') {
+                                        window.location.href = 'https://meet.google.com/new';
+                                    } else {
+                                        window.location.href = 'https://calendar.google.com/calendar/u/0/r/eventedit?vcon=meet&dates=now&hl=en';
+                                });
+                            </script>
+
                         `;
                         break;
                     case 'student':
@@ -169,7 +183,7 @@
                         content = '<h3>Sorry, this page is not available for your role.</h3>';
                         break;
                     default:
-                        content = `<h3>Welcome, ${data.user.role}!</h3>`;
+                        content = ``;
                 }
                 main.innerHTML = content;
 
@@ -211,6 +225,8 @@
                 }
             } else {
                 main.innerHTML = '<p>Please, Log-in to join a meeting</p>';
+                document.getElementById('login-form').style.display = 'block';
+                document.getElementById('userForm').style.display = 'block';
             }
         })
         .catch(error => console.error('Error checking role:', error));
