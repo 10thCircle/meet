@@ -162,11 +162,13 @@
 
                             <script>
                                 document.getElementById('create-meeting').addEventListener('click', () => {
+
                                     if (document.getElementById('meeting-type').value === 'now') {
                                         window.location.href = 'https://meet.google.com/new';
-                                    } else {
+                                    } else if (document.getElementById('meeting-type').value === 'later') {
                                         window.location.href = 'https://calendar.google.com/calendar/u/0/r/eventedit?vcon=meet&dates=now&hl=en';
-                                });
+            }
+                            });
                             </script>
 
                         `;
