@@ -162,13 +162,38 @@
 
                             <script>
                                 document.getElementById('create-meeting').addEventListener('click', () => {
-
+                                    document.getElementById('meeting-code').style.display = 'block';
                                     if (document.getElementById('meeting-type').value === 'now') {
                                         window.location.href = 'https://meet.google.com/new';
                                     } else if (document.getElementById('meeting-type').value === 'later') {
                                         window.location.href = 'https://calendar.google.com/calendar/u/0/r/eventedit?vcon=meet&dates=now&hl=en';
-            }
-                            });
+                                    }
+                                    else {
+                                        alert('Please select a meeting type.');
+                                    }
+                                else {
+                                    document.getElementById('meeting-code')style.display = 'none';} 
+                                });
+                                document.getElementById('join-meeting').addEventListener('click', () => {
+                                    const meetingCode = document.getElementById('meeting-code').value;
+                                    if (meetingCode) {
+                                        window.location.href = \`https://meet.google.com/\${meetingCode}\`;
+                                        fetch('/api/logMeetingCode', {
+                                            method: 'POST',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ meetingCode }),
+                                        })
+                                            .then(response => {
+                                                if (response.ok) {
+                                                    console.log('Meeting code logged successfully');
+                                                } else {
+                                                    console.error('Error logging meeting code');
+                                                }
+                                            })
+                                            .catch(error => console.error('Error logging meeting code:', error));
+                                    } else {
+                                        alert('Please enter a meeting code.');
+                                    }
                             </script>
 
                         `;
@@ -178,9 +203,38 @@
                             <h1>Enter Meeting Code</h1><br>
                             <input type="text" id="meeting-code" placeholder="Enter meeting code">
                             <button id="join-meeting">Join Meeting</button>
+                            <script>
+                                document.getElementById('join-meeting').addEventListener('click', () => {
+                                    const meetingCode = document.getElementById('meeting-code').value;
+                                    if (meetingCode) {
+                                        window.location.href = \`https://meet.google.com/\${meetingCode}\`;
+                                        fetch('/api/logMeetingCode', {
+                                            method: 'POST',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ meetingCode }),
+                                        })
+                                            .then(response => {
+                                                if (response.ok) {
+                                                    console.log('Meeting code logged successfully');
+                                                } else {
+                                                    console.error('Error logging meeting code');
+                                                }
+                                            })
+                                            .catch(error => console.error('Error logging meeting code:', error));
+                                    } else {
+                                        alert('Please enter a meeting code.');
+                                    }
+                                }
+                            </script>
                         `;
                         break;
                     case 'parent':
+                        content = `
+                            <h1>Enter Meeting Code</h1><br>
+                            <input type="text" id="meeting-code" placeholder="Enter meeting code">
+                            <button id="join-meeting">Join Meeting</button>
+                        `;
+                        break;
                     case 'school':
                         content = '<h3>Sorry, this page is not available for your role.</h3>';
                         break;
